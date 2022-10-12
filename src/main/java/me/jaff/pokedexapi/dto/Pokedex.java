@@ -5,6 +5,7 @@ import me.jaff.pokedexapi.service.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -15,6 +16,10 @@ public class Pokedex {
     @Autowired
     public Pokedex(PokemonRepository pokeRepo){
         this.pokeRepo = pokeRepo;
+    }
+
+    public List<Pokemon> getAll(){
+        return pokeRepo.findAll();
     }
     public Pokemon findById(Integer id) throws Exception {
         Optional<Pokemon> queryResult = pokeRepo.findById(id);

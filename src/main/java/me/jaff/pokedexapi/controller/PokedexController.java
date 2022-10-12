@@ -10,14 +10,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/pokedex")
 public class PokedexController {
+
     private final Pokedex pokedex;
 
     @Autowired
     public PokedexController(Pokedex pokedex){
         this.pokedex = pokedex;
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<Pokemon>> getAllPokemons(){
+        return new ResponseEntity<>(pokedex.getAll(),HttpStatus.OK);
     }
 
     @GetMapping("/getById/{id}")

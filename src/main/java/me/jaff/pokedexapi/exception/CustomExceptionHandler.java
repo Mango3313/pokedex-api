@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleResourceException(Exception ex,WebRequest request){
-        return new ResponseEntity<>("There is a exception!", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>("There is a exception! "+ex.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override

@@ -11,14 +11,6 @@ import javax.validation.constraints.NotBlank;
 @Entity
 public class Pokemon {
     @Id
-    @GeneratedValue(
-            strategy= GenerationType.AUTO,
-            generator="native"
-    )
-    @GenericGenerator(
-            name = "native",
-            strategy = "native"
-    )
     private Integer pokemonId;
 
     private Integer pokedexId;
