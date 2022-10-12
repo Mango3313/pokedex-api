@@ -1,10 +1,13 @@
 package me.jaff.pokedexapi.dto;
 
+import me.jaff.pokedexapi.model.BaseResponse;
 import me.jaff.pokedexapi.model.Pokemon;
 import me.jaff.pokedexapi.service.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,14 +21,16 @@ public class Pokedex {
         this.pokeRepo = pokeRepo;
     }
 
-    public List<Pokemon> getAll(){
-        return pokeRepo.findAll();
+    public BaseResponse getAll(){
+        BaseResponse baseResponse = new BaseResponse(HttpStatus.OK.value(),HttpStatus.OK.toString(),"/pokedex/getAll",
+                pokeRepo.findAll());
+        return baseResponse;
     }
-    public Pokemon findById(Integer id) throws Exception {
+    public BaseResponse findById(Integer id) throws Exception {
         Optional<Pokemon> queryResult = pokeRepo.findById(id);
         if(queryResult.isEmpty()){
             throw new Exception("Pokemon not found");
         }
-        return queryResult.get();
+        return new BaseResponse(HttpStatus.OK.value(),HttpStatus.OK.toString(),"", Arrays.asList(queryResult.get()));
     }
 }

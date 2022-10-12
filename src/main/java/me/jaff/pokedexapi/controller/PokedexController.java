@@ -1,14 +1,12 @@
 package me.jaff.pokedexapi.controller;
 
 import me.jaff.pokedexapi.dto.Pokedex;
+import me.jaff.pokedexapi.model.BaseResponse;
 import me.jaff.pokedexapi.model.Pokemon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,12 +22,17 @@ public class PokedexController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Pokemon>> getAllPokemons(){
+    public ResponseEntity<BaseResponse> getAllPokemons(){
         return new ResponseEntity<>(pokedex.getAll(),HttpStatus.OK);
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<Pokemon> getPokemonById(@PathVariable Integer id) throws Exception {
+    public ResponseEntity<BaseResponse> getPokemonById(@PathVariable Integer id) throws Exception {
             return new ResponseEntity<>(pokedex.findById(id), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public void createPokemon(){
+
     }
 }
