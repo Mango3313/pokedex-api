@@ -31,8 +31,8 @@ public class PokedexController {
             return new ResponseEntity<>(pokedex.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping
-    public void createPokemon(){
-
+    @PostMapping("/create")
+    public ResponseEntity<BaseResponse> createPokemon(@RequestBody Pokemon pokemon){
+        return new ResponseEntity<>(pokedex.insertPokemon(pokemon),HttpStatus.OK);
     }
 }
