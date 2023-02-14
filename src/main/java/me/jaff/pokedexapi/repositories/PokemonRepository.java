@@ -1,4 +1,4 @@
-package me.jaff.pokedexapi.service;
+package me.jaff.pokedexapi.repositories;
 
 import me.jaff.pokedexapi.model.Pokemon;
 import org.springframework.data.jpa.repository.JpaRepository;

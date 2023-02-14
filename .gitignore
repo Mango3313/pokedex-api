@@ -4,6 +4,21 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### ECLIPSE ###
+.settings/
+bin/
+tmp/
+.metadata
+.classpath
+.project
+*.tmp
+*.bak
+*.swp
+*~.nib
+*.properties
+.loadpath
+.factorypath
+
 ### STS ###
 .apt_generated
 .classpath
@@ -34,3 +49,4 @@ build/
 
 ### Files ###
 !**/main/resources/application-prod.properties
+!**/main/resources/application-dev.properties
