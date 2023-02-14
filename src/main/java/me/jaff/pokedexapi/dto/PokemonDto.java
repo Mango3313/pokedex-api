@@ -1,21 +1,16 @@
-package me.jaff.pokedexapi.model;
+package me.jaff.pokedexapi.dto;
 
+import me.jaff.pokedexapi.model.Pokemon;
 
-import me.jaff.pokedexapi.dto.PokemonDto;
-
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
-@Entity
-public class Pokemon {
-    @Id
+public class PokemonDto {
+
     private Integer pokemonId;
 
     private Integer pokedexId;
-    @NotBlank(message = "Name is mandatory")
     private String pokemonName;
-    @NotBlank(message = "Type is mandatory")
     private String typeOne;
     private String typeTwo;
     private Integer total;
@@ -29,11 +24,12 @@ public class Pokemon {
     private Integer generation;
     private Boolean isLegendary;
 
-    public Pokemon(){
-
+    public PokemonDto() {
     }
 
-    public Pokemon(Integer pokemonId, Integer pokedexId, String pokemonName, String typeOne, String typeTwo, Integer total, Integer healthPoints, Integer attackPoints, Integer defensePoints, Integer attackSpeed, Integer defenseSpeed, Integer speed, Integer generation, Boolean isLegendary) {
+    public PokemonDto(Integer pokemonId, Integer pokedexId, String pokemonName, String typeOne, String typeTwo,
+                      Integer total, Integer healthPoints, Integer attackPoints, Integer defensePoints,
+                      Integer attackSpeed, Integer defenseSpeed, Integer speed, Integer generation, Boolean isLegendary) {
         this.pokemonId = pokemonId;
         this.pokedexId = pokedexId;
         this.pokemonName = pokemonName;
@@ -50,29 +46,37 @@ public class Pokemon {
         this.isLegendary = isLegendary;
     }
 
-    public Pokemon(PokemonDto pokemonDto){
-        this.pokemonId = pokemonDto.getPokemonId();
-        this.pokedexId = pokemonDto.getPokedexId();
-        this.pokemonName = pokemonDto.getPokemonName();
-        this.typeOne = pokemonDto.getTypeOne();
-        this.typeTwo = pokemonDto.getTypeTwo();
-        this.total = pokemonDto.getTotal();
-        this.healthPoints = pokemonDto.getHealthPoints();
-        this.attackPoints = pokemonDto.getAttackPoints();
-        this.defensePoints = pokemonDto.getDefensePoints();
-        this.attackSpeed = pokemonDto.getAttackSpeed();
-        this.defenseSpeed = pokemonDto.getDefenseSpeed();
-        this.speed = pokemonDto.getSpeed();
-        this.generation = pokemonDto.getGeneration();
-        this.isLegendary = pokemonDto.getLegendary();
+    public PokemonDto(Pokemon pokemon){
+        this.pokemonId = pokemon.getPokemonId();
+        this.pokedexId = pokemon.getPokedexId();
+        this.pokemonName = pokemon.getPokemonName();
+        this.typeOne = pokemon.getTypeOne();
+        this.typeTwo = pokemon.getTypeTwo();
+        this.total = pokemon.getTotal();
+        this.healthPoints = pokemon.getHealthPoints();
+        this.attackPoints = pokemon.getAttackPoints();
+        this.defensePoints = pokemon.getDefensePoints();
+        this.attackSpeed = pokemon.getAttackSpeed();
+        this.defenseSpeed = pokemon.getDefenseSpeed();
+        this.speed = pokemon.getSpeed();
+        this.generation = pokemon.getGeneration();
+        this.isLegendary = pokemon.getLegendary();
     }
 
-    public Integer getSpeed() {
-        return speed;
+    public Integer getPokemonId() {
+        return pokemonId;
     }
 
-    public void setSpeed(Integer speed) {
-        this.speed = speed;
+    public void setPokemonId(Integer pokemonId) {
+        this.pokemonId = pokemonId;
+    }
+
+    public Integer getPokedexId() {
+        return pokedexId;
+    }
+
+    public void setPokedexId(Integer pokedexId) {
+        this.pokedexId = pokedexId;
     }
 
     public String getPokemonName() {
@@ -147,6 +151,14 @@ public class Pokemon {
         this.defenseSpeed = defenseSpeed;
     }
 
+    public Integer getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(Integer speed) {
+        this.speed = speed;
+    }
+
     public Integer getGeneration() {
         return generation;
     }
@@ -161,21 +173,5 @@ public class Pokemon {
 
     public void setLegendary(Boolean legendary) {
         isLegendary = legendary;
-    }
-
-    public Integer getPokemonId() {
-        return pokemonId;
-    }
-
-    public void setPokemonId(Integer pokemonId) {
-        this.pokemonId = pokemonId;
-    }
-
-    public Integer getPokedexId() {
-        return pokedexId;
-    }
-
-    public void setPokedexId(Integer pokedexId) {
-        this.pokedexId = pokedexId;
     }
 }

@@ -1,17 +1,15 @@
 package me.jaff.pokedexapi.model;
 
-import java.util.List;
-
 public class BaseResponse {
     private Integer status;
     private String message;
     private String source;
-    private List<Pokemon> data;
+    private Object data;
 
     public BaseResponse(){
 
     }
-    public BaseResponse(Integer status, String message, String source, List<Pokemon> data){
+    public BaseResponse(Integer status, String message, String source, Object data){
         this.status = status;
         this.message = message;
         this.source = source;
@@ -42,11 +40,11 @@ public class BaseResponse {
         this.source = source;
     }
 
-    public List<Pokemon> getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(List<Pokemon> data) {
+    public void setData(Object data) {
         this.data = data;
     }
 }
