@@ -1,4 +1,6 @@
 package me.jaff.pokedexapi.controller;
+import me.jaff.pokedexapi.dto.PokemonDto;
+import me.jaff.pokedexapi.exception.PokemonNotFoundException;
 import me.jaff.pokedexapi.model.BaseResponse;
 import me.jaff.pokedexapi.model.Pokemon;
 import me.jaff.pokedexapi.service.PokemonService;
@@ -25,7 +27,7 @@ public class PokedexController {
 
     @GetMapping("/get-by-id/{id}")
     public ResponseEntity<BaseResponse> getPokemonById(HttpServletRequest request,
-    		@PathVariable Integer id) throws Exception {
+    		@PathVariable Integer id) throws PokemonNotFoundException {
             return new ResponseEntity<>(new BaseResponse(HttpStatus.OK.value(),
             		HttpStatus.OK.getReasonPhrase(),request.getRequestURI(),
             		pokedex.getPokemonById(id)),HttpStatus.OK);
@@ -33,10 +35,18 @@ public class PokedexController {
 
     @PostMapping("/create")
     public ResponseEntity<BaseResponse> createPokemon(HttpServletRequest request,
-    		@RequestBody Pokemon pokemon){
+    		@RequestBody PokemonDto pokemon){
         return new ResponseEntity<>(new BaseResponse(HttpStatus.OK.value(),
         		HttpStatus.OK.getReasonPhrase(),request.getRequestURI(),
         		pokedex.createPokemon(pokemon)),HttpStatus.OK);
-        
+
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<BaseResponse> deletePokemon(HttpServletRequest request,
+                                                      @RequestBody PokemonDto pokemon){
+        pokedex.deletePokemon(pokemon);
+        return new ResponseEntity<>(new BaseResponse(HttpStatus.OK.value(),
+                HttpStatus.OK.getReasonPhrase(),request.getRequestURI(),null),HttpStatus.OK);
     }
 }

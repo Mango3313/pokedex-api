@@ -1,26 +1,21 @@
-package me.jaff.pokedexapi.model;
-
+package me.jaff.pokedexapi.dto;
 
 import lombok.*;
-import me.jaff.pokedexapi.dto.PokemonDto;
+import me.jaff.pokedexapi.model.Pokemon;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Pokemon {
-    @Id
+public class PokemonDto {
+
     private Integer pokemonId;
 
     private Integer pokedexId;
-    @NotBlank(message = "Name is mandatory")
     private String pokemonName;
-    @NotBlank(message = "Type is mandatory")
     private String typeOne;
     private String typeTwo;
     private Integer total;
@@ -33,5 +28,4 @@ public class Pokemon {
     private Integer speed;
     private Integer generation;
     private Boolean isLegendary;
-
 }
