@@ -39,9 +39,9 @@ private PokemonMapper pokemonMapper;
 
     @Override
     public String createPokemon(PokemonDto pokemonDto) {
+        Pokemon toBeSavedPokemon = pokemonMapper.toEntity(pokemonDto);
         Optional<PokemonDto> savedPokemon = Optional.of(
-                pokemonMapper.toDto(pokemonRepository.save(
-                        new Pokemon(pokemonDto))));
+                pokemonMapper.toDto(pokemonRepository.save(toBeSavedPokemon)));
         return String.format("%b",savedPokemon.isPresent());
     }
 

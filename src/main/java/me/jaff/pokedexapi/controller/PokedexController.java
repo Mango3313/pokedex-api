@@ -41,4 +41,12 @@ public class PokedexController {
         		pokedex.createPokemon(pokemon)),HttpStatus.OK);
         
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<BaseResponse> deletePokemon(HttpServletRequest request,
+                                                      @RequestBody PokemonDto pokemon){
+        pokedex.deletePokemon(pokemon);
+        return new ResponseEntity<>(new BaseResponse(HttpStatus.OK.value(),
+                HttpStatus.OK.getReasonPhrase(),request.getRequestURI(),null),HttpStatus.OK);
+    }
 }
