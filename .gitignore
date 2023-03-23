@@ -48,5 +48,5 @@ build/
 .vscode/
 
 ### Files ###
-!**/main/resources/application-prod.properties
-!**/main/resources/application-dev.properties
+/main/resources/application-prod.properties
+/main/resources/application-dev.properties
