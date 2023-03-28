@@ -3,7 +3,7 @@ name: Spring Framework Test
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   build-and-test:
