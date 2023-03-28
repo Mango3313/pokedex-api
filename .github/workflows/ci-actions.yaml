@@ -1,34 +1,36 @@
-name: Spring Framework Test
 
+#Workflow name
+name: Pokedex CI
 on:
+  #Manually trigger workflow runs
+  workflow_dispatch:
+  #Trigger the workflow on push from the main branch
   push:
     branches:
-      - main
-
+      - dev
 jobs:
-  build-and-test:
+  #Test's job
+  tests:
+    name: Unit tests
+    #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, windows-latest, macOS-latest ]
-        distribution: [ debian, ubuntu, centos, fedora ]
-
-      inputs:
-        distribution:
-          description: 'The Linux distribution to use'
-          required: true
-          default: 'ubuntu' # Agrega aquí la distribución por defecto que quieras utilizar
+    #Job's steps
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Java 17 with Maven
-        uses: actions/setup-java@v2
+      #Check-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
+      - uses: actions/checkout@v1
+      #Set up JDK 11
+      - name: Set up JDK
+        uses: actions/setup-java@v1
         with:
-          java-version: 17
-          maven-version: 3.8.3
-
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
-
-      - name: Run tests with Maven
-        run: mvn test --file pom.xml
+          java-version: '17'
+      #Set up Maven cache
+      - name: Cache Maven packages
+        #This action allows caching dependencies and build outputs to improve workflow execution time.
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      #Run Tests
+      - name: Run Tests
+        run: mvn -B test --file pom.xml
