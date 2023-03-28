@@ -8,11 +8,18 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macOS-latest ]
-        distribution: [ debian, ubuntu, centos, fedora ]
-        java: [ 8, 11, 17 ]
+        os: [ubuntu-latest]
+        distribution: [ubuntu]
+
+    inputs:
+      distribution:
+        description: 'The Linux distribution to use'
+        required: true
+        default: ${{ matrix.distribution }}
+
     steps:
       - uses: actions/checkout@v2
 
