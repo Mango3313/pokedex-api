@@ -25,4 +25,11 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(new BaseResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),ex.getMessage(),
                 ((ServletWebRequest)request).getRequest().getRequestURI(), null), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+    // create a method to handle all other exceptions
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<BaseResponse> handleAllExceptions(Exception ex, WebRequest request) {
+        return new ResponseEntity<>(new BaseResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage(),
+                ((ServletWebRequest) request).getRequest().getRequestURI(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }
