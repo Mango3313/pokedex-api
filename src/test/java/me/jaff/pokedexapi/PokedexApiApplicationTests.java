@@ -1,13 +1,11 @@
 package me.jaff.pokedexapi;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+import me.jaff.pokedexapi.controller.ControllerTests;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+@RunWith(Suite.class)
+@Suite.SuiteClasses({ControllerTests.class})
 class PokedexApiApplicationTests {
-
-    @Test
-    void contextLoads() {
-    }
-
 }

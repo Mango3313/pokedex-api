@@ -27,7 +27,7 @@ public class PokedexController {
 
     @GetMapping("/get-by-id/{id}")
     public ResponseEntity<BaseResponse> getPokemonById(HttpServletRequest request,
-    		@PathVariable Integer id) throws PokemonNotFoundException {
+    		@PathVariable Integer id) throws PokemonNotFoundException{
             return new ResponseEntity<>(new BaseResponse(HttpStatus.OK.value(),
             		HttpStatus.OK.getReasonPhrase(),request.getRequestURI(),
             		pokedex.getPokemonById(id)),HttpStatus.OK);
