@@ -8,7 +8,16 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macOS-latest ]
+        distribution: [ debian, ubuntu, centos, fedora ]
 
+      inputs:
+        distribution:
+          description: 'The Linux distribution to use'
+          required: true
+          default: 'ubuntu' # Agrega aquí la distribución por defecto que quieras utilizar
     steps:
       - uses: actions/checkout@v2
 
